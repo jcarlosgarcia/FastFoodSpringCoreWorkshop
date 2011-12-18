@@ -6,4 +6,5 @@ public interface FastFood {
 
 	public Burger deliverBurger(BurgerType type);
 	public List<Burger> prepareOrder();
+
 }
