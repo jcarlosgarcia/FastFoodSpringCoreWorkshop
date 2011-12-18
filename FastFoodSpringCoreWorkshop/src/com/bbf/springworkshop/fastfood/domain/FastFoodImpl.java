@@ -1,6 +1,8 @@
 package com.bbf.springworkshop.fastfood.domain;
 
 import static com.bbf.springworkshop.fastfood.domain.BurgerType.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,6 +19,11 @@ public class FastFoodImpl implements FastFood {
 	SecretRecipeBook recipeBook;
 	@Autowired
 	CookTeam team;
+	List<Burger> order;
+	
+	public FastFoodImpl() {
+		this.order = new ArrayList<Burger>();
+	}
 	
 	@Override
 	public Burger deliverBurger(BurgerType type) {
@@ -26,8 +33,8 @@ public class FastFoodImpl implements FastFood {
 
 	@Override
 	public List<Burger> prepareOrder() {
-		
-		Scanner scanner = new Scanner(this.getClass().getResourceAsStream("com/bbf/springworkshop/fastfood/resources/burger.txt"));
+
+		Scanner scanner = new Scanner(this.getClass().getResourceAsStream("/com/bbf/springworkshop/fastfood/resources/burger.txt"));
 		
 		try {
 			while (scanner.hasNextLine()) {
@@ -37,7 +44,7 @@ public class FastFoodImpl implements FastFood {
 			scanner.close();
 		}
 		
-		return null;
+		return this.order;
 	}
 	
 	private void processOrder(String order) {
@@ -55,7 +62,8 @@ public class FastFoodImpl implements FastFood {
 
 	private void deliverBurger(BurgerType type, int amount) {
 		
-		for (int i = 0; i <= amount; i++) {
+		for (int i = 1; i <= amount; i++) {
+			this.order.add(new Burger(type));
 			deliverBurger(type);
 		}
 	}
