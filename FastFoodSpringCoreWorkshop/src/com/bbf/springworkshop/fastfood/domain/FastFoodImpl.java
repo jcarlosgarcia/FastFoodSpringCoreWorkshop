@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class FastFoodImpl implements FastFood {
 	
-	Logger logger;
+	private static Logger logger = Logger.getLogger(FastFoodImpl.class.getName());
+	
 	@Autowired
 	SecretRecipeBook recipeBook;
 	@Autowired
@@ -26,10 +27,13 @@ public class FastFoodImpl implements FastFood {
 	@Override
 	public Burger deliverBurger(BurgerType type) {
 		Map<Ingredient, Integer> ingredientsNeeded =  recipeBook.getIngredientsAndQuantities(type);
-		Burger burger = team.prepareBurger(ingredientsNeeded, type);
 		
+		logger.info("Ready to prepare a burger");
+		
+		Burger burger = team.prepareBurger(ingredientsNeeded, type);
 		this.order.add(burger);
 		
+		logger.info("Delivering burger: " + burger);
 		return burger;
 	}
 
