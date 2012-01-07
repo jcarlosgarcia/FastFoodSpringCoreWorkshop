@@ -17,7 +17,7 @@ public class Main {
 		
 		List<Burger> order = fastFood.prepareOrder();
 		for (Burger b : order) {
-			System.out.println(b.getBurgerType());
+			System.out.println(b);
 		}
 		
 	}

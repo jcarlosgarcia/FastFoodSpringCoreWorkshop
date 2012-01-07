@@ -1,6 +1,5 @@
 package com.bbf.springworkshop.fastfood.domain;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class NotEnoughIngredientsException extends Exception {
