@@ -20,4 +20,10 @@ public class Burger {
 		this.type = type;
 	}
 	
+	@Override
+	public String toString() {
+		return "Burger - " + type;
+		
+	}
+	
 }
